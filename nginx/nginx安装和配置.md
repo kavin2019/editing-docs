@@ -24,17 +24,31 @@ nginx安装前需要先安装一下两个模块：
 
 PS：注意插件与nginx的版本兼容问题
 
+### 下载nginx源码包
+
+```shell
+$ cd /usr/local/src
+#下载
+$ curl http://nginx.org/download/nginx-1.16.0.tar.gz > nginx-1.16.0.tar.gz
+#解压
+$ tar -xvf nginx-1.16.0.tar.gz
+$ cd nginx-1.16.0
+```
+
+
+
+
 ### 执行编译和安装
 
 ```shell
-[root@cachets nginx-1.6.3]# pwd
+$ pwd
 /usr/local/src/nginx-1.6.3
-[root@cachets nginx-1.6.3]# ./configure --prefix=/usr/local/nginx-1.6 --with-pcre \
+$ ./configure --prefix=/usr/local/nginx-1.16 --with-pcre \
 > --with-http_stub_status_module --with-http_ssl_module \
 > --with-http_gzip_static_module --with-http_realip_module \
 > --add-module=../nginx_upstream_check_module-0.3.0
 
-[root@cachets nginx-1.6.3]# make && make install
+$ make && make install
 ```
 
 
@@ -83,5 +97,63 @@ nginx大部分常用模块，编译时`./configure --help`以`--without`开头�
 
   > nginx -V
 
-* 
 
+### 错误
+
+* 未安装PCRE
+
+  ```shell
+  error: the HTTP rewrite module requires the PCRE library
+  ```
+
+  解决方案：[安装PCRE](./安装PCRE.md)
+
+### 使用yum方式安装
+
+* 添加yum源，nginx默认不在yum源中，可以使用epel或者官网的yum源，这里使用官网的：
+
+  ```shell
+  $ rpm -ivh http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm
+  #安装完之后，重新缓存一下
+  $ yum makecache
+  #查看yum源就可以看到nginx repo已经被安装到源中
+  $ yum repolist
+  Loaded plugins: fastestmirror, langpacks
+  Loading mirror speeds from cached hostfile
+   * base: mirrors.aliyun.com
+   * extras: mirrors.aliyun.com
+   * updates: mirrors.aliyun.com
+  repo id                          repo name                          status
+  base/7/x86_64                    CentOS-7 - Base                    9,911
+  extras/7/x86_64                  CentOS-7 - Extras                    368
+  nginx/x86_64                     nginx repo                           108
+  updates/7/x86_64                 CentOS-7 - Updates                 1,041
+  ```
+
+  
+
+* 使用yum安装，这步骤就简单了
+
+  ```shell
+  $ yum install -y nginx
+  ```
+
+* 配置nginx服务
+
+  ```shell
+  #设置开机启动
+  $ systemctl enable nginx
+  #启动服务
+  $ systemctl start nginx
+  #停止服务
+  $ systemctl stop nginx
+  #重启服务
+  $ systemctl restart nginx
+  # 重新加载，这个很有用，在修改nginx配置后可以在不停止nginx服务的前提下重新加载配置
+  $ systemctl reload nginx
+  
+  ```
+
+  
+
+* 
