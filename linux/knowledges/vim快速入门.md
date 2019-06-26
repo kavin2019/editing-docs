@@ -277,3 +277,18 @@
 1. nohl 清除高亮
 2. set list 启用显示特殊字符，如制表符和换行符。
 3. set nolist。关闭显示特殊字符
+
+### 文件格式转换
+
+在以后可能windows上的文件需要在linux下的vim打开时，需要进行格式转换，反之也是需要的。这里格式转换就需要用到dos2unix和unix2dos工具
+
+```shell
+#dos2unix工具需要提前安装
+dos2unix [OPTIONS] file1 file2 file3...
+unix2dos [OPTIONS] file1 file2 file3...
+OPTIONS:
+-n 默认情况下，所有转换都是在原文件上进行的，如果需要保留原文件，使用-n参数
+		dos2unix -n a.txt b.txt,将a文件转换格式后建立b文件。
+-k 保持文件时间戳不变
+```
+
