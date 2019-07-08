@@ -73,3 +73,10 @@
   
 
 * 
+
+### YUM安装
+
+```shell
+$ yum install -y zlib zlib-devel
+```
+

@@ -8,11 +8,11 @@ nginx在流行互联网中所占位置：
 
 ## 代理
 
-### 正向代理
-
 代理，就是当一个对象不能或者无法直接完成某种行为，由第三方对象来实现。
 
-正向代理在互联网中，就是代理服务器代替客户端去想web服务器发起请求。如下图：国内由于防火墙的原因无法访问youtube，那么可以通过第三方的vpn作为代理访问，那么vpn就是正向代理，它代理的是客户端。而且客户端是不知道vpn的存在，只知道目标web服务器的存在
+### 正向代理
+
+正向代理在互联网中，就是代理服务器代替客户端去向web服务器发起请求。如下图：国内由于防火墙的原因无法访问youtube，那么可以通过第三方的vpn作为代理访问，那么vpn就是正向代理，它代理的是客户端。而且客户端是不知道vpn的存在，只知道目标web服务器的存在
 
 ![](/Users/james/Documents/docs/Markdown/images/postive-proxy.jpg)
 
@@ -38,16 +38,17 @@ master —| -> worker -> request
         ......中间多个worker
         | -> worker -> request
  ```
- master:
+ master进程职责:
  	* 读取config
  	* 验证config
- 	* 管理worker
- worker:
+  * 管理worker
+
+worker进程职责:
   * 处理连接和请求。
   * worker的个数是由配置文件决定的。配置节点：`worker_processes: 1`。一般数量由cpu个数决定
 
 
-## 安装
+## 安装（省略）
 
 ## 配置
 
@@ -56,8 +57,7 @@ nginx的主配置文件：nginx.config。
 ### 全局配置
 
 * worker-processes
-  nginx工作室worker进程数。一般对应cpu数量。查看cpu数量：``
-* 
+  nginx工作时worker进程数。一般对应cpu数量。查看cpu数量：``
 * `worker_cpu_affinity`
   在高并发情况下，通过设置cpu粘性来降低由于多CPU核切换造成的寄存器等现场重建带来的性能损耗。如`worker_cpu_affinity 0001 0010 0100 1000;` （四核）
 * `worker_connections 2048`

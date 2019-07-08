@@ -56,3 +56,10 @@ pcre模块为nginx提供了重写机制，如果不需要重写模块，在`./co
   ```
 
   
+
+### YUM安装
+
+```shell
+$ yum install -y pcre pcre-devel
+```
+
