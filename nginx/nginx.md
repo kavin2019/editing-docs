@@ -289,6 +289,11 @@ nignx -s reload
 ```
 热启动方法：
   master使用新的配置文件启动初始化新的worker进程，然后将请求分配到新的worker进程。最后原来的worker进程在处理完请求后被kill掉。
+## 查看nginx安装的模块
+```shell
+$ nginx -V
+```
+
 
 ## 通用
 
