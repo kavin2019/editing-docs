@@ -160,3 +160,5 @@ open_log_file_cache max=1000 inactive=20s valid=1m min_uses=2;
 作用域：http、server、location
 语法： log_not_found on|off;
 默认值on，即记录至error_log中。
+
+## PS：如果没有配置log，那么默认日志存储在`/var/log/nginx`下
