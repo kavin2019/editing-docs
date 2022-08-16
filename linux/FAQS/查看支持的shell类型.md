@@ -3,3 +3,8 @@
 ```shell
 $ cat /etc/shells
 ```
+
+## 查看当前shell类型
+```shell
+$ echo $SHELL
+```
